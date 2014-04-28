@@ -316,7 +316,7 @@
 	console.log(typeof primitiveBoolean1, typeof primitiveBoolean2);
 	//logs boolean boolean
 
-//using constructors and new keyword for creating objects
+	//using constructors and new keyword for creating objects
 
 	var myNumber = new Number(23);
 	console.log(typeof myNumber); 
@@ -355,6 +355,7 @@
 	console.log(typeof myError);
 	//logs object
 
+
 //
 
 //How Primitive Values Are Stored/Copied in JavaScript
@@ -369,57 +370,36 @@
 	console.log(myString, myStringCopy);
 	//logs null "foo"
 
+
+//
+
 //Primitive Values Are Equal by Value
 
+	//Primitive Values are stored by VALUE
+	//Complex Values are stored by REFERENCE
+
+	var price1 = 10;
+	var price2 = 10;
+	var price3 = new Number('10');
+	var price4 = price3;
+
+	console.log(price1 === price2);
+	//logs ture
+
+	console.log(price1 === price3);
+	//logs false
+		//price1 is a primitive value, and price3 is a complex number object.
+
+	console.log(price3 === price4);
+	//logs true
+		//complex values are equal by reference, NOT value
+
+	price4 = 10;
+	console.log(price4 === price3);
+	//logs false
+		//price4 is now a primitive value, NOT a complex number object.  
 
 
+//
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//The String, Number, and Boolean Primitive Values Act Like Objects When Used Like Objects
