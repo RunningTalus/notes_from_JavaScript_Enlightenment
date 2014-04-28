@@ -403,3 +403,314 @@
 //
 
 //The String, Number, and Boolean Primitive Values Act Like Objects When Used Like Objects
+
+	var myNull = null;
+	//console.log(myNull.toString());
+	//logs Uncaught TypeError: Cannot read property 'toString' of null (anonymous function);
+
+	var myUndefined = undefined;
+	//console.log(myUndefined.toString());
+	//logs Uncaught TypeError: Cannot read property 'toString' of undefined (anonymous function);
+
+	var primitiveString1 = 'foo';
+	console.log(primitiveString1.toString());
+	//logs foo
+
+	var primitiveString2 = String('foo');
+	console.log(primitiveString2.toString());
+	//logs foo
+
+	var primitiveNumber1 = 10;
+	console.log(primitiveNumber1.toString());
+	//logs 10
+
+	var primitiveNumber2 = Number('10');
+	console.log(primitiveNumber2.toString());
+	//logs 10
+
+	var primitiveBoolean1 = true;
+	console.log(primitiveBoolean1.toString());
+	//logs true
+
+	var primitiveBoolean2 = Boolean('true');
+	console.log(primitiveBoolean2.toString());
+	//logs true
+
+	//Primitive Values: String, Number, and Boolean, are converted to objects to leverage the toString() method, and then are returned to primitive values once the method is invoked and returned.  
+
+
+//
+
+//Complex (a.k.a. Composite) Values
+
+	//Native object constructors: Object(), Array(), Function(), Date(), Error(), and RegExp() are complex because they can contain ONE or MORE primitive of complex values.
+
+
+	//COMPLEX/COMPOSITE VALUES BELOW
+
+	var object = {
+		myString: 'string',
+		myNumber: 10,
+		myBoolean: false,
+		myNull: null,
+		myUndefined: undefined
+	};
+
+	var array = ['string', 10, false, null, undefined];
+
+
+	//PRIMITIVE VALUES BELOW: String, Number, Boolean, Null, and Undefined
+
+	var myString = 'string';
+	var myNumber = 10;
+	var myBoolean = false;
+	var myNull = null;
+	var myUndefined = undefined;
+
+
+//
+
+//How Complex Values Are Stored/Copied in JavaScript
+
+	var myObject = {};
+	var copyOfMyObject = myObject;  //not copied by value, just the reference is copied
+
+	myObject.foo = 'bar';
+
+	console.log(myObject, copyOfMyObject);
+	//logs Object {foo: "bar"} Object {foo: "bar"}
+
+		//both objects have the foo property/key, because the REFERENCE the same object.
+		//when you change a complex value, because it is stored in reference, you change the value stored in all variables that reference that complex value.
+
+
+//
+
+//Complex Objects Are Equal by Reference
+
+	var objectFoo = {same: 'same'};
+	var objectBar = {same: 'same'};
+
+	console.log(objectFoo === objectBar);
+	//logs false, JS does not care that they are identical and of the same object type
+
+
+	var objectA = {foo: 'bar'};
+	var objectB = objectA;
+
+	console.log(objectA === objectB);
+	//logs true because they reference the SAME object
+
+
+//
+
+//Complex Objects Have Dynamic Properties
+
+	var objA = {property: 'value'};
+	var pointer1 = objA;
+	var pointer2 = pointer1;
+
+	objA.property = null;
+	console.log(objA);
+	//logs object {property: null}
+
+	console.log(objA.property, pointer1.property, pointer2.property);
+	//logs null null null
+
+
+//
+
+//The typeof Operator Use on Primitive and Complex Values
+
+var myNull = null;
+console.log(typeof myNull);
+//logs object
+	//BEWARE: this is NULL
+
+var myUndefined = undefined;
+console.log(typeof myUndefined);
+//logs undefined
+
+var primitiveString1 = "string";
+console.log(typeof primitiveString1);
+//logs string
+
+var primitiveString2 = String('string');
+console.log(typeof primitiveString2);
+//logs string
+
+var primitiveNumber1 = 10;
+console.log(typeof primitiveNumber1);
+//logs number
+
+var primitiveNumber2 = Number('10');
+console.log(typeof primitiveNumber2);
+//logs number
+
+var primitiveBoolean1 = true;
+console.log(typeof primitiveBoolean1);
+//logs boolean
+
+var primitiveBoolean2 = Boolean('true');
+console.log(typeof primitiveBoolean2);
+//logs boolean
+
+//COMPLEX VALUES
+
+var myNumber = new Number(23);
+console.log(typeof myNumber);
+//logs object
+
+var myString = new String('male');
+console.log(typeof myString);
+//logs object
+
+var myBoolean = new Boolean(false);
+console.log(typeof myBoolean);
+//logs object
+
+var myObject = new Object();
+console.log(typeof myObject);
+//logs object
+
+var myArray = new Array('foo', 'bar');
+console.log(typeof myArray);
+//logs object
+
+var myFunction = new Function("x", "y", "return x * y");
+console.log(typeof myFunction);
+//logs function
+	//BEWARE
+
+var myDate = new Date();
+console.log(typeof myDate);
+//logs object
+
+var myRegExp = new RegExp('\\bt[a-z]+\\b');
+console.log(typeof myRegExp);
+//logs object
+
+var myError = new Error('Crap!');
+console.log(typeof myError);
+//logs object
+
+
+//
+
+//Dynamic Properties Allow for Mutable Objects
+
+String.augmentedProperties = [];
+	//augment the built-in String constructor Function() with the augmentedProperties property
+
+//if the prototype does not have the trimIT() add it
+if (!String.prototype.trimIT) {	
+	String.prototype.trimIT = function(){
+	return this.replace(/^\s+|\s+$/g, '');
+}
+
+//now add trimIT string to the augmentedProperties array
+String.augmentedProperties.push('trimIT'); 
+}
+
+var myString = '    trim me    ';
+//invoke our custom trimIT string method
+console.log(myString.trimIT());
+//logs trim me
+
+console.log(String.augmentedProperties.join());
+//logs trimIT
+
+
+//
+
+//ALL Constructor Instances Have Constructor Properties that Point to Their Constructor Function
+
+var foo = {};
+
+console.log(foo.constructor === Object);
+//logs true, because object() constructed foo
+
+console.log(foo.constructor);
+//logs function Object() { [native code] } 
+	//points to the Object() constructor function
+
+var myNumber = new Number('23');
+console.log(myNumber.constructor === Number);
+//logs true
+
+var myNumberLiteral = 23;
+console.log(myNumberLiteral.constructor === Number);
+//logs true
+
+var myString = new String ('male');
+console.log(myString.constructor === String);
+//logs true
+
+var myStringLiteral = 'male';
+console.log(myStringLiteral.constructor === String);
+//logs true
+
+var myBoolean = new Boolean('true');
+console.log(myBoolean.constructor === Boolean);
+//logs true
+
+var myBooleanLiteral = true;
+console.log(myBooleanLiteral.constructor === Boolean);
+//logs true
+
+var myObject = new Object();
+console.log(myObject.constructor === Object);
+//logs true
+
+var myObjectLiteral = {};
+console.log(myObjectLiteral.constructor === Object);
+//logs true
+
+var myArray = new Array();
+console.log(myArray.constructor === Array);
+//logs true
+
+var myArrayLiteral = [];
+console.log(myArrayLiteral.constructor === Array);
+//logs true
+
+var myFunction = new Function();
+console.log(myFunction.constructor === Function);
+//logs true
+
+var myFunctionLiteral = function() {};
+console.log(myFunctionLiteral.constructor === Function);
+//logs true
+
+var myDate = new Date();
+console.log(myDate.constructor === Date);
+//logs true
+
+var myRegExp = new RegExp('/./');
+console.log(myRegExp.constructor === RegExp);
+//logs true
+
+var myRegExpLiteral = /./;
+console.log(myRegExpLiteral.constructor === RegExp);
+//logs true
+
+var myError = new Error;
+console.log(myError.constructor === Error);
+//logs true
+
+//
+
+var CustomConstructor = function CustomConstructor(){ return 'Wow!'; };
+var instanceOfCustomObject = new CustomConstructor();
+
+console.log(instanceOfCustomObject.constructor === CustomConstructor);
+//logs true
+
+console.log(instanceOfCustomObject.constructor);
+//logs function CustomConstructor(){ return 'Wow!'; } 
+	//returns a reference to the CustomConstructor() function
+
+
+//
+
+//Verify that an Object Is an INstance of a Particular Constructor Function
