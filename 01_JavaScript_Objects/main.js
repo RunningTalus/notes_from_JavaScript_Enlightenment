@@ -301,6 +301,108 @@
 
 //The Primitive Values null, undefined, "string", 10. true, and false Are NOT Objects
 
+	var primitiveString1 = 'foo';
+	var primitiveString2 = String('foo');
+	console.log(typeof primitiveString1, typeof primitiveString2);
+	//logs string string
+
+	var primitiveNumber1 = 10;
+	var primitiveNumber2 = Number('10');
+	console.log(typeof primitiveNumber1, typeof primitiveNumber2);
+	//logs number number
+
+	var primitiveBoolean1 = true;
+	var primitiveBoolean2 = Boolean('true');
+	console.log(typeof primitiveBoolean1, typeof primitiveBoolean2);
+	//logs boolean boolean
+
+//using constructors and new keyword for creating objects
+
+	var myNumber = new Number(23);
+	console.log(typeof myNumber); 
+	//logs object
+
+	var myString = new String('male');
+	console.log(typeof myString);
+	//logs object
+
+	var myBoolean = new Boolean(false);
+	console.log(typeof myBoolean);
+	//logs object
+
+	var myObject = new Object();
+	console.log(typeof myObject);
+	//logs object
+
+	var myArray = new Array('foo', 'bar');
+	console.log(typeof myArray);
+	//logs object
+
+	var myFunction = new Function('x', 'y', 'return x*y');
+	console.log(typeof myFunction);
+	//logs function
+	//Be Aware typeof returns function for ALL function objects
+
+	var myDate = new Date();
+	console.log(typeof myDate);
+	//logs object
+
+	var myRegExp = new RegExp('\\bt[a-z]+\\b');
+	console.log(typeof myRegExp);
+	//logs object
+
+	var myError = new Error('Crap!');
+	console.log(typeof myError);
+	//logs object
+
+//
+
+//How Primitive Values Are Stored/Copied in JavaScript
+
+	//primitive values are copied literally
+
+	var myString = 'foo'
+	var myStringCopy = myString;
+
+	var myString = null;
+
+	console.log(myString, myStringCopy);
+	//logs null "foo"
+
+//Primitive Values Are Equal by Value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
