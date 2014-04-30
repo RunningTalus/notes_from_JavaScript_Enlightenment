@@ -740,47 +740,67 @@ console.log('foo' instanceof String);
 
 //An Instance Created From a Constructor Can Have Its Own Independent Properties (Instance Properties)
 
+var myArray = new Array();
+myArray.prop = 'test';
+console.log(myArray.prop);
+//logs test
+
+//This can be done with all non-primitive constructors.
+var myString = new String();
+myString.prop = 'test';
+console.log(myString.prop);
+//logs test
+
+var myNumber = new Number();
+myNumber.prop = 'test';
+console.log(myNumber.prop);
+//logs test
+
+var myBoolean = new Boolean();
+myBoolean.prop = 'test';
+console.log(myBoolean.prop);
+//logs test
+
+var myObject = new Object();
+myObject.prop = 'test';
+console.log(myObject.prop);
+//logs test
+
+var myArray = new Array();
+myArray.prop = 'test';
+console.log(myArray.prop);
+//logs test
+
+var myFunction = new Function('return 2+2');
+myFunction.prop = 'test';
+console.log(myFunction.prop);
+//logs test
+
+var myRegExp = new RegExp('\bt[a-z]+\b');
+myRegExp.prop = 'test';
+console.log(myRegExp.prop);
+//logs test
+
+//BEWARE: Instance properties do NOT work with primitive/literal values.  
+
+var myString = 'string';
+myString.prop = true;
+console.log(myString.prop);
+//logs undefined
+
+var myNumber = 1;
+myNumber.prop = true;
+console.log(myNumber.prop);
+//logs undefined
+
+var myBoolean = true;
+myBoolean.prop = true;
+console.log(myBoolean.prop);
+//logs undefined
 
 
+//
 
+//The Semantics  of "JavaScript Objects" and "Object()Objects"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//The Object() constructor function productes an empty generic object container, which is referred to as an "Object() object."
