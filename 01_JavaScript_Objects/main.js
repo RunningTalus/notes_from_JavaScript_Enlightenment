@@ -713,4 +713,74 @@ console.log(instanceOfCustomObject.constructor);
 
 //
 
-//Verify that an Object Is an INstance of a Particular Constructor Function
+//Verify that an Object Is an Instance of a Particular Constructor Function
+
+var CustomConstructor = function() {this.foo = 'bar';}; 
+//user defined object constructor
+
+var instanceOfCustomObject = new CustomConstructor(); 
+//instantiate an instance of CustomConstructor
+
+console.log(instanceOfCustomObject instanceof CustomConstructor);
+//logs true
+
+//works the same as a native object
+console.log(new Array('foo') instanceof Array);
+//logs true
+
+console.log('foo' instanceof String);
+//logs false
+
+//the instanceof operator will return false when dealing with primitive values that leverage object wrappers.
+
+//the instanceof operator only works with complex objects and instances created from constructor functions that return objects.  
+
+
+//
+
+//An Instance Created From a Constructor Can Have Its Own Independent Properties (Instance Properties)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
