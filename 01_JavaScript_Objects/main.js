@@ -522,285 +522,285 @@
 
 //The typeof Operator Use on Primitive and Complex Values
 
-var myNull = null;
-console.log(typeof myNull);
-//logs object
-	//BEWARE: this is NULL
+	var myNull = null;
+	console.log(typeof myNull);
+	//logs object
+		//BEWARE: this is NULL
 
-var myUndefined = undefined;
-console.log(typeof myUndefined);
-//logs undefined
+	var myUndefined = undefined;
+	console.log(typeof myUndefined);
+	//logs undefined
 
-var primitiveString1 = "string";
-console.log(typeof primitiveString1);
-//logs string
+	var primitiveString1 = "string";
+	console.log(typeof primitiveString1);
+	//logs string
 
-var primitiveString2 = String('string');
-console.log(typeof primitiveString2);
-//logs string
+	var primitiveString2 = String('string');
+	console.log(typeof primitiveString2);
+	//logs string
 
-var primitiveNumber1 = 10;
-console.log(typeof primitiveNumber1);
-//logs number
+	var primitiveNumber1 = 10;
+	console.log(typeof primitiveNumber1);
+	//logs number
 
-var primitiveNumber2 = Number('10');
-console.log(typeof primitiveNumber2);
-//logs number
+	var primitiveNumber2 = Number('10');
+	console.log(typeof primitiveNumber2);
+	//logs number
 
-var primitiveBoolean1 = true;
-console.log(typeof primitiveBoolean1);
-//logs boolean
+	var primitiveBoolean1 = true;
+	console.log(typeof primitiveBoolean1);
+	//logs boolean
 
-var primitiveBoolean2 = Boolean('true');
-console.log(typeof primitiveBoolean2);
-//logs boolean
+	var primitiveBoolean2 = Boolean('true');
+	console.log(typeof primitiveBoolean2);
+	//logs boolean
 
-//COMPLEX VALUES
+	//COMPLEX VALUES
 
-var myNumber = new Number(23);
-console.log(typeof myNumber);
-//logs object
+	var myNumber = new Number(23);
+	console.log(typeof myNumber);
+	//logs object
 
-var myString = new String('male');
-console.log(typeof myString);
-//logs object
+	var myString = new String('male');
+	console.log(typeof myString);
+	//logs object
 
-var myBoolean = new Boolean(false);
-console.log(typeof myBoolean);
-//logs object
+	var myBoolean = new Boolean(false);
+	console.log(typeof myBoolean);
+	//logs object
 
-var myObject = new Object();
-console.log(typeof myObject);
-//logs object
+	var myObject = new Object();
+	console.log(typeof myObject);
+	//logs object
 
-var myArray = new Array('foo', 'bar');
-console.log(typeof myArray);
-//logs object
+	var myArray = new Array('foo', 'bar');
+	console.log(typeof myArray);
+	//logs object
 
-var myFunction = new Function("x", "y", "return x * y");
-console.log(typeof myFunction);
-//logs function
-	//BEWARE
+	var myFunction = new Function("x", "y", "return x * y");
+	console.log(typeof myFunction);
+	//logs function
+		//BEWARE
 
-var myDate = new Date();
-console.log(typeof myDate);
-//logs object
+	var myDate = new Date();
+	console.log(typeof myDate);
+	//logs object
 
-var myRegExp = new RegExp('\\bt[a-z]+\\b');
-console.log(typeof myRegExp);
-//logs object
+	var myRegExp = new RegExp('\\bt[a-z]+\\b');
+	console.log(typeof myRegExp);
+	//logs object
 
-var myError = new Error('Crap!');
-console.log(typeof myError);
-//logs object
+	var myError = new Error('Crap!');
+	console.log(typeof myError);
+	//logs object
 
 
 //
 
 //Dynamic Properties Allow for Mutable Objects
 
-String.augmentedProperties = [];
-	//augment the built-in String constructor Function() with the augmentedProperties property
+	String.augmentedProperties = [];
+		//augment the built-in String constructor Function() with the augmentedProperties property
 
-//if the prototype does not have the trimIT() add it
-if (!String.prototype.trimIT) {	
-	String.prototype.trimIT = function(){
-	return this.replace(/^\s+|\s+$/g, '');
-}
+	//if the prototype does not have the trimIT() add it
+	if (!String.prototype.trimIT) {	
+		String.prototype.trimIT = function(){
+		return this.replace(/^\s+|\s+$/g, '');
+	}
 
-//now add trimIT string to the augmentedProperties array
-String.augmentedProperties.push('trimIT'); 
-}
+	//now add trimIT string to the augmentedProperties array
+	String.augmentedProperties.push('trimIT'); 
+	}
 
-var myString = '    trim me    ';
-//invoke our custom trimIT string method
-console.log(myString.trimIT());
-//logs trim me
+	var myString = '    trim me    ';
+	//invoke our custom trimIT string method
+	console.log(myString.trimIT());
+	//logs trim me
 
-console.log(String.augmentedProperties.join());
-//logs trimIT
+	console.log(String.augmentedProperties.join());
+	//logs trimIT
 
 
 //
 
 //ALL Constructor Instances Have Constructor Properties that Point to Their Constructor Function
 
-var foo = {};
+	var foo = {};
 
-console.log(foo.constructor === Object);
-//logs true, because object() constructed foo
+	console.log(foo.constructor === Object);
+	//logs true, because object() constructed foo
 
-console.log(foo.constructor);
-//logs function Object() { [native code] } 
-	//points to the Object() constructor function
+	console.log(foo.constructor);
+	//logs function Object() { [native code] } 
+		//points to the Object() constructor function
 
-var myNumber = new Number('23');
-console.log(myNumber.constructor === Number);
-//logs true
+	var myNumber = new Number('23');
+	console.log(myNumber.constructor === Number);
+	//logs true
 
-var myNumberLiteral = 23;
-console.log(myNumberLiteral.constructor === Number);
-//logs true
+	var myNumberLiteral = 23;
+	console.log(myNumberLiteral.constructor === Number);
+	//logs true
 
-var myString = new String ('male');
-console.log(myString.constructor === String);
-//logs true
+	var myString = new String ('male');
+	console.log(myString.constructor === String);
+	//logs true
 
-var myStringLiteral = 'male';
-console.log(myStringLiteral.constructor === String);
-//logs true
+	var myStringLiteral = 'male';
+	console.log(myStringLiteral.constructor === String);
+	//logs true
 
-var myBoolean = new Boolean('true');
-console.log(myBoolean.constructor === Boolean);
-//logs true
+	var myBoolean = new Boolean('true');
+	console.log(myBoolean.constructor === Boolean);
+	//logs true
 
-var myBooleanLiteral = true;
-console.log(myBooleanLiteral.constructor === Boolean);
-//logs true
+	var myBooleanLiteral = true;
+	console.log(myBooleanLiteral.constructor === Boolean);
+	//logs true
 
-var myObject = new Object();
-console.log(myObject.constructor === Object);
-//logs true
+	var myObject = new Object();
+	console.log(myObject.constructor === Object);
+	//logs true
 
-var myObjectLiteral = {};
-console.log(myObjectLiteral.constructor === Object);
-//logs true
+	var myObjectLiteral = {};
+	console.log(myObjectLiteral.constructor === Object);
+	//logs true
 
-var myArray = new Array();
-console.log(myArray.constructor === Array);
-//logs true
+	var myArray = new Array();
+	console.log(myArray.constructor === Array);
+	//logs true
 
-var myArrayLiteral = [];
-console.log(myArrayLiteral.constructor === Array);
-//logs true
+	var myArrayLiteral = [];
+	console.log(myArrayLiteral.constructor === Array);
+	//logs true
 
-var myFunction = new Function();
-console.log(myFunction.constructor === Function);
-//logs true
+	var myFunction = new Function();
+	console.log(myFunction.constructor === Function);
+	//logs true
 
-var myFunctionLiteral = function() {};
-console.log(myFunctionLiteral.constructor === Function);
-//logs true
+	var myFunctionLiteral = function() {};
+	console.log(myFunctionLiteral.constructor === Function);
+	//logs true
 
-var myDate = new Date();
-console.log(myDate.constructor === Date);
-//logs true
+	var myDate = new Date();
+	console.log(myDate.constructor === Date);
+	//logs true
 
-var myRegExp = new RegExp('/./');
-console.log(myRegExp.constructor === RegExp);
-//logs true
+	var myRegExp = new RegExp('/./');
+	console.log(myRegExp.constructor === RegExp);
+	//logs true
 
-var myRegExpLiteral = /./;
-console.log(myRegExpLiteral.constructor === RegExp);
-//logs true
+	var myRegExpLiteral = /./;
+	console.log(myRegExpLiteral.constructor === RegExp);
+	//logs true
 
-var myError = new Error;
-console.log(myError.constructor === Error);
-//logs true
+	var myError = new Error;
+	console.log(myError.constructor === Error);
+	//logs true
 
 //
 
-var CustomConstructor = function CustomConstructor(){ return 'Wow!'; };
-var instanceOfCustomObject = new CustomConstructor();
+	var CustomConstructor = function CustomConstructor(){ return 'Wow!'; };
+	var instanceOfCustomObject = new CustomConstructor();
 
-console.log(instanceOfCustomObject.constructor === CustomConstructor);
-//logs true
+	console.log(instanceOfCustomObject.constructor === CustomConstructor);
+	//logs true
 
-console.log(instanceOfCustomObject.constructor);
-//logs function CustomConstructor(){ return 'Wow!'; } 
-	//returns a reference to the CustomConstructor() function
+	console.log(instanceOfCustomObject.constructor);
+	//logs function CustomConstructor(){ return 'Wow!'; } 
+		//returns a reference to the CustomConstructor() function
 
 
 //
 
 //Verify that an Object Is an Instance of a Particular Constructor Function
 
-var CustomConstructor = function() {this.foo = 'bar';}; 
-//user defined object constructor
+	var CustomConstructor = function() {this.foo = 'bar';}; 
+	//user defined object constructor
 
-var instanceOfCustomObject = new CustomConstructor(); 
-//instantiate an instance of CustomConstructor
+	var instanceOfCustomObject = new CustomConstructor(); 
+	//instantiate an instance of CustomConstructor
 
-console.log(instanceOfCustomObject instanceof CustomConstructor);
-//logs true
+	console.log(instanceOfCustomObject instanceof CustomConstructor);
+	//logs true
 
-//works the same as a native object
-console.log(new Array('foo') instanceof Array);
-//logs true
+	//works the same as a native object
+	console.log(new Array('foo') instanceof Array);
+	//logs true
 
-console.log('foo' instanceof String);
-//logs false
+	console.log('foo' instanceof String);
+	//logs false
 
-//the instanceof operator will return false when dealing with primitive values that leverage object wrappers.
+	//the instanceof operator will return false when dealing with primitive values that leverage object wrappers.
 
-//the instanceof operator only works with complex objects and instances created from constructor functions that return objects.  
+	//the instanceof operator only works with complex objects and instances created from constructor functions that return objects.  
 
 
 //
 
 //An Instance Created From a Constructor Can Have Its Own Independent Properties (Instance Properties)
 
-var myArray = new Array();
-myArray.prop = 'test';
-console.log(myArray.prop);
-//logs test
+	var myArray = new Array();
+	myArray.prop = 'test';
+	console.log(myArray.prop);
+	//logs test
 
-//This can be done with all non-primitive constructors.
-var myString = new String();
-myString.prop = 'test';
-console.log(myString.prop);
-//logs test
+	//This can be done with all non-primitive constructors.
+	var myString = new String();
+	myString.prop = 'test';
+	console.log(myString.prop);
+	//logs test
 
-var myNumber = new Number();
-myNumber.prop = 'test';
-console.log(myNumber.prop);
-//logs test
+	var myNumber = new Number();
+	myNumber.prop = 'test';
+	console.log(myNumber.prop);
+	//logs test
 
-var myBoolean = new Boolean();
-myBoolean.prop = 'test';
-console.log(myBoolean.prop);
-//logs test
+	var myBoolean = new Boolean();
+	myBoolean.prop = 'test';
+	console.log(myBoolean.prop);
+	//logs test
 
-var myObject = new Object();
-myObject.prop = 'test';
-console.log(myObject.prop);
-//logs test
+	var myObject = new Object();
+	myObject.prop = 'test';
+	console.log(myObject.prop);
+	//logs test
 
-var myArray = new Array();
-myArray.prop = 'test';
-console.log(myArray.prop);
-//logs test
+	var myArray = new Array();
+	myArray.prop = 'test';
+	console.log(myArray.prop);
+	//logs test
 
-var myFunction = new Function('return 2+2');
-myFunction.prop = 'test';
-console.log(myFunction.prop);
-//logs test
+	var myFunction = new Function('return 2+2');
+	myFunction.prop = 'test';
+	console.log(myFunction.prop);
+	//logs test
 
-var myRegExp = new RegExp('\bt[a-z]+\b');
-myRegExp.prop = 'test';
-console.log(myRegExp.prop);
-//logs test
+	var myRegExp = new RegExp('\bt[a-z]+\b');
+	myRegExp.prop = 'test';
+	console.log(myRegExp.prop);
+	//logs test
 
-//BEWARE: Instance properties do NOT work with primitive/literal values.  
+	//BEWARE: Instance properties do NOT work with primitive/literal values.  
 
-var myString = 'string';
-myString.prop = true;
-console.log(myString.prop);
-//logs undefined
+	var myString = 'string';
+	myString.prop = true;
+	console.log(myString.prop);
+	//logs undefined
 
-var myNumber = 1;
-myNumber.prop = true;
-console.log(myNumber.prop);
-//logs undefined
+	var myNumber = 1;
+	myNumber.prop = true;
+	console.log(myNumber.prop);
+	//logs undefined
 
-var myBoolean = true;
-myBoolean.prop = true;
-console.log(myBoolean.prop);
-//logs undefined
+	var myBoolean = true;
+	myBoolean.prop = true;
+	console.log(myBoolean.prop);
+	//logs undefined
 
 
 //
 
 //The Semantics  of "JavaScript Objects" and "Object()Objects"
 
-//The Object() constructor function productes an empty generic object container, which is referred to as an "Object() object."
+	//The Object() constructor function productes an empty generic object container, which is referred to as an "Object() object."
