@@ -99,3 +99,159 @@
 	//logs Error {stack: (...), message: "Crap!"
 
 //Encapsulating Complex Objects in a Programmatically Beneficial Way
+
+	// Object(), Array(), and Function() objects can contain other complex objects
+
+	// encapsulation using objects, creates object chains
+
+	var object1 = {
+		object1_1: {
+			object1_1_1: {foo: 'bar'},
+			object1_1_2: {},
+		},
+		object1_2: {
+			object1_2_1: {},
+			object1_2_2: {},
+		}	
+	};
+
+	console.log(object1.object1_1.object1_1_1.foo);
+		//logs bar
+
+	//encapsulation using arrays, creates a multidimensional array chain
+
+	var myArray = [[[]]];
+
+	//encapsulation using functions
+
+	var myFunction = function(){
+		var myFunction = function(){
+			var myFunction = function(){
+			};
+		};
+	};
+
+	//getting crazy with Arrays, Objects, and Functions...
+
+	var foo = [{foo: [{ bar: {say: function() {return 'hi';}}}]}];
+	console.log(foo[0].foo[0].bar.say());
+	//logs hi
+
+
+	//
+
+//Getting/Setting/Updating an Object's Properties Using Dot Notation or Bracket Notation
+
+
+//using Dot notation
+var dave = new Object();
+
+//setting properties
+
+dave.living = true;
+dave.age = 34;
+dave.gender = 'male';
+dave.getGender = function() {return dave.gender;};
+
+
+//getting properties
+
+console.log(dave.living);
+//logs true
+
+console.log(dave.age);
+//logs 34
+
+console.log(dave.gender);
+//logs male
+
+console.log(dave.getGender())
+//logs male
+
+
+//updating properties
+
+dave.living = false;
+dave.age = 99;
+dave.gender = 'alien';
+dave.getGender();
+
+console.log(dave);
+//logs Object {living: false, age: 99, gender: "alien", getGender: function}
+
+
+//using Bracket notation
+//creating the dave Object() object
+var dave = new Object();
+
+//setting properties
+dave['living'] = true;
+dave['age'] = 34;
+dave['gender'] = 'male';
+dave['getGender'] = function() {return dave.gender;};
+//dave['getGender'] = function() {return dave['gender'];};
+
+//getting properties
+
+console.log(dave['living']);
+//logs true
+
+console.log(dave['age']);
+//logs 34
+
+console.log(dave['gender']);
+//logs male
+
+console.log(dave['getGender']()); //NOTE: just put the function invocation on the end!
+//logs male
+
+//
+//Me messing around.  Are these the same thing?
+// console.log(dave['getGender'] = function() {return dave.gender;});
+//logs function () {return dave.gender;} 
+// console.log(dave['getGender'] = function() {return dave['gender'];});
+//logs function () {return dave['gender'];} 
+//
+
+//updating properties
+
+dave['living'] = false;
+dave['age'] = 99;
+dave['gender'] = 'alien';
+dave['getGender'] = function() {return 'gender = ' + dave.gender;};
+
+console.log(dave);
+//logs Object {living: false, age: 99, gender: "alien", getGender: function}
+
+//
+
+//Advantage of Bracket notation to access a property key when you have a variable that contains a string value representing the property name
+
+var foobarObject = {foobar: 'Foobar is code for no code'};
+
+var string1 = 'foo';
+var string2 = 'bar';
+
+console.log(foobarObject[string1 + string2]);
+//logs Foobar is code for no code
+
+//
+//Bracket notation can be used to access property names that are invalid JavaScript identifiers (numbers and reserved words that are valid as strings).
+
+var myObject = {'123':'zero', 'class':'foo'};
+console.log(myObject['123'], myObject['class']);
+//logs zero foo
+
+//notes
+	//object chaining
+	//objects are mutable - meaning that you can get, set, or update them at any time.  
+	//if a property inside an object is a mehthod, all you have to do is use the () operators [e.g., dave.getGender()] to invoke the property method.
+
+//
+
+
+//Deleting Object Properties
+
+
+
+
