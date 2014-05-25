@@ -143,115 +143,471 @@
 //Getting/Setting/Updating an Object's Properties Using Dot Notation or Bracket Notation
 
 
-//using Dot notation
-var dave = new Object();
+	//using Dot notation
+	var dave = new Object();
 
-//setting properties
+	//setting properties
 
-dave.living = true;
-dave.age = 34;
-dave.gender = 'male';
-dave.getGender = function() {return dave.gender;};
-
-
-//getting properties
-
-console.log(dave.living);
-//logs true
-
-console.log(dave.age);
-//logs 34
-
-console.log(dave.gender);
-//logs male
-
-console.log(dave.getGender())
-//logs male
+	dave.living = true;
+	dave.age = 34;
+	dave.gender = 'male';
+	dave.getGender = function() {return dave.gender;};
 
 
-//updating properties
+	//getting properties
 
-dave.living = false;
-dave.age = 99;
-dave.gender = 'alien';
-dave.getGender();
+	console.log(dave.living);
+	//logs true
 
-console.log(dave);
-//logs Object {living: false, age: 99, gender: "alien", getGender: function}
+	console.log(dave.age);
+	//logs 34
+
+	console.log(dave.gender);
+	//logs male
+
+	console.log(dave.getGender())
+	//logs male
 
 
-//using Bracket notation
-//creating the dave Object() object
-var dave = new Object();
+	//updating properties
 
-//setting properties
-dave['living'] = true;
-dave['age'] = 34;
-dave['gender'] = 'male';
-dave['getGender'] = function() {return dave.gender;};
-//dave['getGender'] = function() {return dave['gender'];};
+	dave.living = false;
+	dave.age = 99;
+	dave.gender = 'alien';
+	dave.getGender();
 
-//getting properties
+	console.log(dave);
+	//logs Object {living: false, age: 99, gender: "alien", getGender: function}
 
-console.log(dave['living']);
-//logs true
 
-console.log(dave['age']);
-//logs 34
+	//using Bracket notation
+	//creating the dave Object() object
+	var dave = new Object();
 
-console.log(dave['gender']);
-//logs male
+	//setting properties
+	dave['living'] = true;
+	dave['age'] = 34;
+	dave['gender'] = 'male';
+	dave['getGender'] = function() {return dave.gender;};
+	//dave['getGender'] = function() {return dave['gender'];};
 
-console.log(dave['getGender']()); //NOTE: just put the function invocation on the end!
-//logs male
+	//getting properties
 
-//
-//Me messing around.  Are these the same thing?
-// console.log(dave['getGender'] = function() {return dave.gender;});
-//logs function () {return dave.gender;} 
-// console.log(dave['getGender'] = function() {return dave['gender'];});
-//logs function () {return dave['gender'];} 
-//
+	console.log(dave['living']);
+	//logs true
 
-//updating properties
+	console.log(dave['age']);
+	//logs 34
 
-dave['living'] = false;
-dave['age'] = 99;
-dave['gender'] = 'alien';
-dave['getGender'] = function() {return 'gender = ' + dave.gender;};
+	console.log(dave['gender']);
+	//logs male
 
-console.log(dave);
-//logs Object {living: false, age: 99, gender: "alien", getGender: function}
+	console.log(dave['getGender']()); //NOTE: just put the function invocation on the end!
+	//logs male
 
-//
+	//
 
-//Advantage of Bracket notation to access a property key when you have a variable that contains a string value representing the property name
+	//Me messing around.  Are these the same thing?
 
-var foobarObject = {foobar: 'Foobar is code for no code'};
+	//dave['getGender'] = function() {return dave.gender;};
+		// console.log(dave['getGender'] = function() {return dave.gender;});
+			//logs function () {return dave.gender;} 
 
-var string1 = 'foo';
-var string2 = 'bar';
+	//dave['getGender'] = function() {return dave['gender'];}		
+		// console.log(dave['getGender'] = function() {return dave['gender'];});
+			//logs function () {return dave['gender'];} 
+			
+	//
 
-console.log(foobarObject[string1 + string2]);
-//logs Foobar is code for no code
+	//updating properties
 
-//
-//Bracket notation can be used to access property names that are invalid JavaScript identifiers (numbers and reserved words that are valid as strings).
+	dave['living'] = false;
+	dave['age'] = 99;
+	dave['gender'] = 'alien';
+	dave['getGender'] = function() {return 'gender = ' + dave.gender;};
 
-var myObject = {'123':'zero', 'class':'foo'};
-console.log(myObject['123'], myObject['class']);
-//logs zero foo
+	console.log(dave);
+	//logs Object {living: false, age: 99, gender: "alien", getGender: function}
 
-//notes
-	//object chaining
-	//objects are mutable - meaning that you can get, set, or update them at any time.  
-	//if a property inside an object is a mehthod, all you have to do is use the () operators [e.g., dave.getGender()] to invoke the property method.
+	//
+
+	//Advantage of Bracket notation to access a property key when you have a variable that contains a string value representing the property name
+
+	var foobarObject = {foobar: 'Foobar is code for no code'};
+
+	var string1 = 'foo';
+	var string2 = 'bar';
+
+	console.log(foobarObject[string1 + string2]);
+	//logs Foobar is code for no code
+
+	//
+	//Bracket notation can be used to access property names that are invalid JavaScript identifiers (numbers and reserved words that are valid as strings).
+
+	var myObject = {'123':'zero', 'class':'foo'};
+	console.log(myObject['123'], myObject['class']);
+	//logs zero foo
+
+	//notes
+		//object chaining
+		//objects are mutable - meaning that you can get, set, or update them at any time.  
+		//if a property inside an object is a method, all you have to do is use the () operators [e.g., dave.getGender()] to invoke the property method.
 
 //
 
 
 //Deleting Object Properties
 
+	var foo = {bar: 'bar'};
+		console.log('bar' in foo); 
+		//logs true
+	delete foo.bar;
+
+	console.log('bar' in foo);
+		//logs false
+
+	//NOTE: Delete will not delete properties on the prototype chain
+		//Delete is the only way to actually remove a property from an object
+
+//
 
 
+//How References to Object Properties Are Resolved
 
+	var myArray = [];
+	console.log(myArray.foo);
+		//logs undefined
+
+			//JavaScript will look for it in Array.prototype.foo
+				//It then checks for the object instance in Object.prototype (a.k.a ___proto___) to find the constructor function that created the instance.  
+				//a function is an object with properties
+
+	var myArray = ['foo','bar'];
+	console.log(myArray.join());
+		//logs foo,bar
+			//the join() method is defined at Array.prototype.join
+
+	console.log(myArray.hasOwnProperty('join'));
+		//logs false
+
+	console.log(myArray.toLocaleString());
+		//logs foo,bar
+		
+			//toLocaleString() is NOT defined within the myArray Object
+				//toLocaleString() is NOT defined on the Array.prototype
+					//toLocaleString() is defined at Object.prototype.toLocaleString
+					//if the toLocaleString() method had not been found on the Object it would have logged undefined
+			
+			//All prototype properties are objects
+
+//
+
+
+//Using hasOwnProperty, Verify That an Object Property Is Not From the Prototype Chain
+
+	var myObject = {foo: 'value'};
+		//ask myObject if it has its own property foo
+
+	console.log(myObject.hasOwnProperty('foo'));
+		//logs true
+
+		//hasOwnPropertycan check an Object for a property that is NOT inheriting the property from the protoype chain.  
+
+//
+
+
+//Checking If an Object Contains a Given Property Using the 'in' Operator
+
+		//the 'in' operator can check for properties of an object, including properties from the prototype chain
+			//returns a boolean (true or false) value
+
+	var myObject = {foo: 'value'};
+
+	console.log('foo' in myObject);
+		//logs true
+
+	//toString was never defined on myObject, but is inherited from the prototype chain (Object.prototype.toString)
+
+	console.log('toString' in myObject);
+		//logs true
+
+//
+
+
+//Enumerate (Loop Over) an Object's Properties using the 'for in' Loop
+
+	var dave = {
+		age: 34,
+		gender: 'male'
+	};
+
+	for (key in dave) {
+		if (dave.hasOwnProperty(key)){
+			console.log(key);
+				//logs age
+				//logs gender
+		}
+	}
+
+	//'key' is a variable used to represent each property name
+	//avoid properties inherited from the prototype chain by using an 'if' statement
+
+	//NOTE: Look up 'propertyisEnumerable()' method
+
+//
+
+
+//Host Objects versus Native Objects
+
+//Host objects are not part of the ECMAScript, but ARE available as objects during execution
+
+for (x in window) {
+	console.log(x);
+}
+
+	//logs all of the properties of the window/head object (QTY#187 in Chrome Version 35.0.1916.114)
+
+	// top 
+	// window 
+	// location 
+	// external 
+	// chrome 
+	// document 
+	// $ 
+	// jQuery 
+	// myObject 
+	// myFunction 
+	// object1 
+	// myArray 
+	// foo 
+	// dave 
+	// foobarObject 
+	// string1 
+	// string2 
+	// key 
+	// speechSynthesis 
+	// localStorage 
+	// sessionStorage 
+	// applicationCache 
+	// webkitStorageInfo 
+	// indexedDB 
+	// webkitIndexedDB 
+	// crypto 
+	// CSS 
+	// performance 
+	// console 
+	// devicePixelRatio 
+	// styleMedia 
+	// parent 
+	// opener 
+	// frames 
+	// self 
+	// defaultstatus 
+	// defaultStatus 
+	// status 
+	// name 
+	// length 
+	// closed 
+	// pageYOffset 
+	// pageXOffset 
+	// scrollY 
+	// scrollX 
+	// screenTop 
+	// screenLeft 
+	// screenY 
+	// screenX 
+	// innerWidth 
+	// innerHeight 
+	// outerWidth 
+	// outerHeight 
+	// offscreenBuffering 
+	// frameElement 
+	// clientInformation 
+	// navigator 
+	// toolbar 
+	// statusbar 
+	// scrollbars 
+	// personalbar 
+	// menubar 
+	// locationbar 
+	// history 
+	// screen 
+	// postMessage 
+	// close 
+	// blur 
+	// focus 
+	// ondeviceorientation 
+	// ondevicemotion 
+	// onunload 
+	// onstorage 
+	// onpopstate 
+	// onpageshow 
+	// onpagehide 
+	// ononline 
+	// onoffline 
+	// onmessage 
+	// onhashchange 
+	// onbeforeunload 
+	// onwaiting 
+	// onvolumechange 
+	// ontimeupdate 
+	// onsuspend 
+	// onsubmit 
+	// onstalled 
+	// onshow 
+	// onselect 
+	// onseeking 
+	// onseeked 
+	// onscroll 
+	// onresize 
+	// onreset 
+	// onratechange 
+	// onprogress 
+	// onplaying 
+	// onplay 
+	// onpause 
+	// onmousewheel 
+	// onmouseup 
+	// onmouseover 
+	// onmouseout 
+	// onmousemove 
+	// onmouseleave 
+	// onmouseenter 
+	// onmousedown 
+	// onloadstart 
+	// onloadedmetadata 
+	// onloadeddata 
+	// onload 
+	// onkeyup 
+	// onkeypress 
+	// onkeydown 
+	// oninvalid 
+	// oninput 
+	// onfocus 
+	// onerror 
+	// onended 
+	// onemptied 
+	// ondurationchange 
+	// ondrop 
+	// ondragstart 
+	// ondragover 
+	// ondragleave 
+	// ondragenter 
+	// ondragend 
+	// ondrag 
+	// ondblclick 
+	// oncuechange 
+	// oncontextmenu 
+	// onclose 
+	// onclick 
+	// onchange 
+	// oncanplaythrough 
+	// oncanplay 
+	// oncancel 
+	// onblur 
+	// onabort 
+	// onwheel 
+	// onwebkittransitionend 
+	// onwebkitanimationstart 
+	// onwebkitanimationiteration 
+	// onwebkitanimationend 
+	// ontransitionend 
+	// onsearch 
+	// getSelection 
+	// print 
+	// stop 
+	// open 
+	// showModalDialog 
+	// alert 
+	// confirm 
+	// prompt 
+	// find 
+	// scrollBy 
+	// scrollTo 
+	// scroll 
+	// moveBy 
+	// moveTo 
+	// resizeBy 
+	// resizeTo 
+	// matchMedia 
+	// getComputedStyle 
+	// getMatchedCSSRules 
+	// webkitConvertPointFromPageToNode 
+	// webkitConvertPointFromNodeToPage 
+	// requestAnimationFrame 
+	// cancelAnimationFrame 
+	// webkitRequestAnimationFrame 
+	// webkitCancelAnimationFrame 
+	// webkitCancelRequestAnimationFrame 
+	// captureEvents 
+	// releaseEvents 
+	// atob 
+	// btoa 
+	// setTimeout 
+	// clearTimeout 
+	// setInterval 
+	// clearInterval 
+	// TEMPORARY 
+	// PERSISTENT 
+	// webkitRequestFileSystem 
+	// webkitResolveLocalFileSystemURL 
+	// openDatabase 
+	// addEventListener 
+	// removeEventListener 
+	// dispatchEvent
+
+//
+
+for (x in window.document) {
+	console.log();
+}
+	//doesn't log anything
+
+//
+
+
+// Enhancing and Extending Objects with Underscore.js
+	
+	// These functions work on all objects and arrays:
+
+		// each()
+		// map()
+		// reduce()
+		// reduceRight()
+		// detect()
+		// select()
+		// reject()
+		// all()
+		// any()
+		// include()
+		// invoke()
+		// pluck()
+		// max()
+		// min()
+		// sortBy()
+		// sortIndex()
+		// toArray()
+		// size()
+
+	// These functions work on all objects:
+	
+		// keys()
+		// values()
+		// functions()
+		// extend()
+		// clone()
+		// tap()
+		// isEqual()
+		// isEmpty()
+		// isElement()
+		// isArray()
+		// isArguments
+		// isFunction()
+		// isString()
+		// isNumber
+		// isBoolean
+		// isDate
+		// isRegExp
+		// isNaN
+		// isNull
+		// isUndefined
