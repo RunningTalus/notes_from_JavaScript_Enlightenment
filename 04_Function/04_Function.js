@@ -131,7 +131,7 @@
 		//called like so: funcB[0]();
 
 	var funcC = {method: function(){}};
-		// too.method()
+		// funcC.method()
 		// or
 		// funcC['method']();
 
@@ -222,25 +222,183 @@
 
 // The Function Instance length Property and arguments.length
 
-//the arguments object has a unique length property
-	//it gives the number of parameters sent to the function during invocation
+	//the arguments object has a unique length property
+		//it gives the number of parameters sent to the function during invocation
 
-var myFunction = function(z, s, d){
-	return arguments.length;
-};
-console.log(myFunction());
-	//logs 0, because no parameters were passed to the function
+	var myFunction = function(z, s, d){
+		return arguments.length;
+	};
+	console.log(myFunction());
+		//logs 0, because no parameters were passed to the function
 
-//Using the length property of all Function() instances, we can grab the total number of parameters the function is expecting.
+	//Using the length property of all Function() instances, we can grab the total number of parameters the function is expecting.
 
-var myFunction = function(a,b,c,d,e,f,g){
-	return myFunction.length;
-};
+	var myFunction = function(a,b,c,d,e,f,g){
+		return myFunction.length;
+	};
 
-console.log(myFunction());
-	//logs 7
+	console.log(myFunction());
+		//logs 7
 
 //
 
 
 // Redefining Function Parameters
+
+	// A function's parameters can be redefined inside the function, or by using 'arguments' array
+
+	var foo = false;
+	var bar = false;
+
+	var myFunction = function(foo, bar){
+		arguments[0] = true;
+		bar = true;
+		console.log(arguments[0], bar);
+	};
+
+	myFunction();
+		//logs true true
+
+// 
+
+
+// Return a Function Before It Is Done (Cancel Function Execution)
+
+	var add = function(x, y){
+		//if the parameters are not numbers, return error
+		if (typeof x !== 'number' || typeof y !== 'number'){
+			return 'pass in numbers';
+		}
+		return x + y;
+	};
+
+	console.log(add(3,3));
+		//logs 6
+	console.log(add('2', '2'));
+		//logs pass in numbers
+
+//
+
+
+// Defining a Function (Statement, Expression, or Constructor) - QTY #3 ways
+
+	var addConstructor = new Function('x', 'y', 'return x + y');
+		console.log(addConstructor(2,2));
+			//logs 4
+
+	function addStatement (x,y) {
+		return x+y;
+	}
+		console.log(addStatement(3,3));
+			//logs 6
+
+	var addExpression = function(x,y) {
+		return x + y;
+	};	
+		console.log(addExpression(4,4));
+			//logs 8
+
+	//Okay and maybe a 4th way via a "Named Function Expression"
+
+	var add = function add(x,y) {
+		return x + y;
+	};
+		console.log(add(5,5));
+			//logs 10
+
+//
+
+
+// Invoking a Function [Function, Method, Constructor, or call() and apply()]
+
+	//QTY #4 function invocation patterns
+
+		// As a function
+		// As a method
+		// As a constructor
+		// Using apply() or call()
+
+	// FUNCTION PATTERN
+
+		var myFunction = function(){
+			return 'foo';
+		};
+			console.log(myFunction());
+				//logs foo
+
+
+	// METHOD PATTERN
+
+		var myObject = {myFunction: function(){
+			return 'bar';
+		}};
+			console.log(myObject.myFunction());
+				//logs bar
+
+
+	// CONSTRUCTOR PATTERN
+
+		var Dave = function(){
+			this.living = true,
+			this.age = 34,
+			this.gender = 'male',
+			this.getGender = function(){
+				return this.gender;
+			};
+		};
+
+		var dave = new Dave();
+			console.log(dave);
+				//logs Dave {living: true, age: 34, gender: "male", getGender: function}
+
+
+	// APPLY() and CALL() PATTERN
+
+		var greet = {
+			runGreet: function(){
+				console.log(this.name, arguments[0], arguments[1]);
+			}
+		};
+
+		var dave = {name: 'dave'};
+		var wilson = {name: 'wilson'};
+
+		// CALL takes an object and two strings
+		greet.runGreet.call(dave, 'is', 'learning');
+			//logs dave is learning
+
+		// APPLY takes an object and an array of strings
+		greet.runGreet.apply(wilson, ['is a','dog']);
+			//logs wilson is a dog
+
+//
+
+
+// Anonymous Functions
+
+	// Anonymous functions do NOT have an identifier.
+	// Anonymous functions are used for passing functions as a parameter to another function
+
+	// Anonymous function, but we have NO way of invoking it
+		
+		// function() {
+		// 	console.log('hi');
+		// }
+
+	// Create a function that can invoke the anonymous function
+		
+		var sayHi = function(f){
+			f();
+		};
+
+	// Pass an anonymous function as a parameter
+		
+		sayHi(function(){
+			console.log('hi');
+				//logs hi
+		});
+
+//
+
+
+// Self-invoking Function Expression
